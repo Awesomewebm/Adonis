@@ -6261,6 +6261,24 @@ return function()
 			end
 		};
 		
+		Unteam = {
+			Prefix = server.Settings.Prefix;
+			Commands = {"unteam"};
+			Args = {"player"};
+			Description = "Sets the target player(s) to neutral";
+			Hidden = false; 
+			Fun = false;
+			AdminLevel = "Moderators";
+			Function = function(plr,args)
+				for _,player in ipairs(server.Functions.GetPlayers(plr, args[1])) do
+					
+					player.Neutral = true
+					player.Team = nil
+					player.TeamColor = BrickColor.new(194) -- Neutral Team
+				end
+			end
+			};
+		
 		SetFOV = {
 			Prefix = Settings.Prefix;
 			Commands = {"fov";"fieldofview";"setfov"};
