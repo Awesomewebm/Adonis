@@ -7341,12 +7341,19 @@ return function(Vargs)
 			Args = {"number";};
 			Description = "Change the pitch of the currently playing song";
 			AdminLevel = "Moderators";
-			Function = function(plr,args)
+			Function = function(plr,args,data)
 				local pitch = args[1]
-				for i,v in pairs(service.Workspace:children()) do
-					if v.Name=="ADONIS_SOUND" then
-						v.Pitch = pitch
-					end
+				for i,v in pairs(service.Workspace:children()) do 
+					if v.Name=="ADONIS_SOUND" then 
+						if args[1]:sub(1,1) == "+" then
+							v.Pitch=v.Pitch+tonumber(args[1]:sub(2))
+						elseif args[1]:sub(1,1) == "-" then
+							v.Pitch=v.Pitch-tonumber(args[1]:sub(2))
+						else
+							v.Pitch = pitch 
+						end
+
+					end 
 				end
 			end
 		};
@@ -7357,12 +7364,18 @@ return function(Vargs)
 			Args = {"number"};
 			Description = "Change the volume of the currently playing song";
 			AdminLevel = "Moderators";
-			Function = function(plr,args)
+			Function = function(plr,args,data)
 				local volume = tonumber(args[1])
 				assert(volume, "Volume must be a valid number")
-				for i,v in pairs(service.Workspace:children()) do
-					if v.Name=="ADONIS_SOUND" then
-						v.Volume = volume
+				for i,v in pairs(service.Workspace:children()) do 
+					if v.Name=="ADONIS_SOUND" then 
+						if args[1]:sub(1,1) == "+" then
+							v.Volume=v.Volume+tonumber(args[1]:sub(2))
+						elseif args[1]:sub(1,1) == "-" then
+							v.Volume=v.Volume-tonumber(args[1]:sub(2))
+						else
+							v.Volume = volume 
+						end
 					end
 				end
 			end
